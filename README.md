@@ -6,7 +6,7 @@ Welcome to ShellQuiz, a trivia game designed to test your knowledge while defend
 
 - Randomly generated trivia questions from a public API.
 - Dynamic scoring system with game-over and winning conditions.
-- Terminal Based UI.=
+- Terminal Based UI.
 
 ## Getting Started 🚀
 
