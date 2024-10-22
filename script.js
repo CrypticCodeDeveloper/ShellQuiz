@@ -30,6 +30,16 @@ document.addEventListener("DOMContentLoaded",()=>{
         questionNum = 0;
         fetchUrl(URL)
     }
+
+    function playSound(audioFile) {
+        // Create a new audio object
+        const audio = new Audio(audioFile);
+
+        audio.play().catch(error => {
+            console.error('Failed to play sound:', error);
+        });
+    }
+
     const resetDisplay = () => {
         document.getElementById('breached-screen').classList.add('hidden')
         document.getElementById('success-screen').classList.add('hidden')
@@ -111,21 +121,25 @@ document.addEventListener("DOMContentLoaded",()=>{
         if (noOfLives === 0) { // check if game is over
             displayLossMessage()
         } else if (decodeHtmlEntities(option.trim().toLowerCase()) == correctAnswer.trim().toLowerCase()){ // If the answer was picked right
+            playSound('assets/correct-answer.mp3')
             score += 5
             questionNum += 1
             displayQuestion(json)
         } else { // If answer is wrong
+            playSound('assets/wrong-answer.mp3')
             noOfLives -= 1;
             document.getElementById('lives-display').textContent = noOfLives
         }
     }
 
     const displaySuccessMessage = () => {
+        playSound('assets/terminal-defended.mp3')
         document.getElementById('success-screen').classList.remove('hidden')
         document.getElementById('terminal').classList.add('hidden')
     }
 
     const displayLossMessage = () => {
+        playSound('assets/system-breached.mp3')
         document.getElementById('breached-screen').classList.remove('hidden')
         document.getElementById('terminal').classList.add('hidden')
         setTimeout(() => {
